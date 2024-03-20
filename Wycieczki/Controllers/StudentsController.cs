@@ -34,7 +34,7 @@ namespace Wycieczki.Controllers
             }
 
             var student = await _context.Students
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.StudentId == id);
             if (student == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace Wycieczki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,EnrollmentDate")] Student student)
+        public async Task<IActionResult> Create([Bind("StudentId,FirstName,LastName,DateOfBirth")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -86,9 +86,9 @@ namespace Wycieczki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,EnrollmentDate")] Student student)
+        public async Task<IActionResult> Edit(int id, [Bind("StudentId,FirstName,LastName,DateOfBirth")] Student student)
         {
-            if (id != student.Id)
+            if (id != student.StudentId)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace Wycieczki.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StudentExists(student.Id))
+                    if (!StudentExists(student.StudentId))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace Wycieczki.Controllers
             }
 
             var student = await _context.Students
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.StudentId == id);
             if (student == null)
             {
                 return NotFound();
@@ -151,7 +151,7 @@ namespace Wycieczki.Controllers
 
         private bool StudentExists(int id)
         {
-            return _context.Students.Any(e => e.Id == id);
+            return _context.Students.Any(e => e.StudentId == id);
         }
     }
 }

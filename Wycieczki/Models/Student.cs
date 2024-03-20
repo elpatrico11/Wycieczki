@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Wycieczki.Models
 {
     public class Student
     {
-        public int Id { get; set; }
+        public int StudentId { get; set; }
+
+        [Required]
+        [MaxLength(50)]
         public string FirstName { get; set; }
 
+        [Required]
+        [MaxLength(50)]
         public string LastName { get; set; }
-        public DateTime EnrollmentDate { get; set; }
 
-        public ICollection<Trip> Trips { get; set; }
+        public DateTime DateOfBirth { get; set; }
     }
 }

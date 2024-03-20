@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using Wycieczki.Models; 
-using Wycieczki.Data;
+﻿using Wycieczki.Models;
 
 namespace Wycieczki.Data
 {
@@ -11,55 +8,61 @@ namespace Wycieczki.Data
         {
             context.Database.EnsureCreated();
 
-            // Look for any trips.
-            if (context.Trips.Any())
+            // Look for any students.
+            if (context.Students.Any())
             {
                 return;   // DB has been seeded
             }
 
             var students = new Student[]
             {
-                new Student { FirstName = "Carson", LastName = "Alexander" },
-                new Student { FirstName = "Meredith", LastName = "Alonso" },
-                new Student { FirstName = "Arturo", LastName = "Anand" },
-                // Add more students as needed
+                new Student{  FirstName="Carson",LastName="Alexander",DateOfBirth=DateTime.Parse("2005-09-01")},
+                new Student{FirstName="Meredith",LastName="Alonso",DateOfBirth=DateTime.Parse("2002-09-01")},
+                new Student{ FirstName="Arturo",LastName="Anand",DateOfBirth=DateTime.Parse("2003-09-01")},
+                new Student{ FirstName="Gytis",LastName="Barzdukas",DateOfBirth=DateTime.Parse("2002-09-01")},
+                //new Student{FirstName="Yan",LastName="Li",DateOfBirth=DateTime.Parse("2002-09-01")},
+                //new Student{FirstName="Peggy",LastName="Justice",DateOfBirth=DateTime.Parse("2001-09-01")},
+                //new Student{FirstName="Laura",LastName="Norman",DateOfBirth=DateTime.Parse("2003-09-01")},
+                //new Student{FirstName="Nino",LastName="Olivetto",DateOfBirth=DateTime.Parse("2005-09-01")}
             };
 
-            foreach (var student in students)
+            foreach (Student s in students)
             {
-                context.Students.Add(student);
+                context.Students.Add(s);
             }
-
-            context.SaveChanges();
-
-            var destinations = new Destination[]
-            {
-                new Destination { DestinationName = "Paris", DestinationCountry = "France", TripID = 1 },
-                new Destination { DestinationName = "London", DestinationCountry = "UK", TripID = 2 },
-                new Destination { DestinationName = "Rome", DestinationCountry = "Italy", TripID = 1 },
-               
-            };
-
-            foreach (var destination in destinations)
-            {
-                context.Destinations.Add(destination);
-            }
-
             context.SaveChanges();
 
             var trips = new Trip[]
             {
-                new Trip { TripName = "Summer Vacation", StartDate = DateTime.Parse("2024-06-01"), EndDate = DateTime.Parse("2024-06-15") },
-                new Trip { TripName = "Winter Holiday", StartDate = DateTime.Parse("2024-12-20"), EndDate = DateTime.Parse("2025-01-05") },
-                new Trip { TripName = "Spring Break", StartDate = DateTime.Parse("2025-03-15"), EndDate = DateTime.Parse("2025-03-30") },
-              
+                new Trip{Name="Wycieczka 1",Date=DateTime.Parse("2021-09-01"),Price=Decimal.Parse("100")},
+                new Trip{Name="Wycieczka 2",Date=DateTime.Parse("2021-09-01"),Price=Decimal.Parse("200")},
+                new Trip{Name="Wycieczka 3",Date=DateTime.Parse("2021-09-01"),Price=Decimal.Parse("300")},
+                new Trip{Name="Wycieczka 4",Date=DateTime.Parse("2021-09-01"),Price=Decimal.Parse("400")},
+                new Trip{Name="Wycieczka 5",Date=DateTime.Parse("2021-09-01"),Price=Decimal.Parse("500")}
             };
 
-            foreach (var trip in trips)
+            foreach (Trip c in trips)
             {
-                context.Trips.Add(trip);
+                context.Trips.Add(c);
             }
+            context.SaveChanges();
 
+            // Pobieramy zaktualizowane encje ze zmianami ID z bazy danych
+            var updatedStudents = context.Students.ToList();
+            var updatedTrips = context.Trips.ToList();
+
+            var reservations = new Reservation[]
+            {
+                new Reservation{StudentId=updatedStudents[0].StudentId,TripId=updatedTrips[0].TripId,DateOfReservation=DateTime.Parse("2021-09-01")},
+                new Reservation{StudentId=updatedStudents[1].StudentId,TripId=updatedTrips[2].TripId,DateOfReservation=DateTime.Parse("2021-09-01")},
+                new Reservation{StudentId=updatedStudents[1].StudentId,TripId=updatedTrips[1].TripId,DateOfReservation=DateTime.Parse("2021-09-01")},
+                new Reservation{StudentId=updatedStudents[2].StudentId,TripId=updatedTrips[1].TripId,DateOfReservation=DateTime.Parse("2021-09-01")}
+            };
+
+            foreach (Reservation reservation in reservations)
+            {
+                context.Add(reservation);
+            }
             context.SaveChanges();
         }
     }

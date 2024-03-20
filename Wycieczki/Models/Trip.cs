@@ -1,16 +1,22 @@
-﻿namespace Wycieczki.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+namespace Wycieczki.Models
 {
     public class Trip
     {
-        public int TripID { get; set; }
-        public string TripName { get; set; }
+        public int TripId { get; set; }
 
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        [Required]
+        [MaxLength(100)]
+        public string Name { get; set; }
 
+        public DateTime Date { get; set; }
 
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal Price { get; set; }
 
+        public virtual ICollection<Reservation> Reservations { get; set; }
 
-        public ICollection<Destination> Destinations { get; set; }  // A trip can have multiple destinations
     }
 }
