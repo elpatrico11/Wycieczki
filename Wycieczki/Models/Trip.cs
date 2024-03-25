@@ -5,9 +5,13 @@ namespace Wycieczki.Models
 {
     public class Trip
     {
+
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TripId { get; set; }
 
         [Required]
+
         [MaxLength(100)]
         public string Name { get; set; }
 
@@ -18,5 +22,9 @@ namespace Wycieczki.Models
 
         public virtual ICollection<Reservation> Reservations { get; set; }
 
+
+        //skad dokad
+        //kraj
+        
     }
 }

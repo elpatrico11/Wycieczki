@@ -62,7 +62,6 @@ namespace Wycieczki
                                 options.UseSqlServer(context.Configuration.GetConnectionString("DefaultConnection")));
 
                             services.AddDatabaseDeveloperPageExceptionFilter();
-
                             services.AddControllersWithViews();
                             services.AddRazorPages();
                         });

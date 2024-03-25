@@ -20,10 +20,10 @@ namespace Wycieczki.Data
                 new Student{FirstName="Meredith",LastName="Alonso",DateOfBirth=DateTime.Parse("2002-09-01")},
                 new Student{ FirstName="Arturo",LastName="Anand",DateOfBirth=DateTime.Parse("2003-09-01")},
                 new Student{ FirstName="Gytis",LastName="Barzdukas",DateOfBirth=DateTime.Parse("2002-09-01")},
-                //new Student{FirstName="Yan",LastName="Li",DateOfBirth=DateTime.Parse("2002-09-01")},
-                //new Student{FirstName="Peggy",LastName="Justice",DateOfBirth=DateTime.Parse("2001-09-01")},
-                //new Student{FirstName="Laura",LastName="Norman",DateOfBirth=DateTime.Parse("2003-09-01")},
-                //new Student{FirstName="Nino",LastName="Olivetto",DateOfBirth=DateTime.Parse("2005-09-01")}
+                new Student{FirstName="Yan",LastName="Li",DateOfBirth=DateTime.Parse("2002-09-01")},
+                new Student{FirstName="Peggy",LastName="Justice",DateOfBirth=DateTime.Parse("2001-09-01")},
+                new Student{FirstName="Laura",LastName="Norman",DateOfBirth=DateTime.Parse("2003-09-01")},
+                new Student{FirstName="Nino",LastName="Olivetto",DateOfBirth=DateTime.Parse("2005-09-01")}
             };
 
             foreach (Student s in students)
@@ -34,11 +34,11 @@ namespace Wycieczki.Data
 
             var trips = new Trip[]
             {
-                new Trip{Name="Wycieczka 1",Date=DateTime.Parse("2021-09-01"),Price=Decimal.Parse("100")},
-                new Trip{Name="Wycieczka 2",Date=DateTime.Parse("2021-09-01"),Price=Decimal.Parse("200")},
-                new Trip{Name="Wycieczka 3",Date=DateTime.Parse("2021-09-01"),Price=Decimal.Parse("300")},
-                new Trip{Name="Wycieczka 4",Date=DateTime.Parse("2021-09-01"),Price=Decimal.Parse("400")},
-                new Trip{Name="Wycieczka 5",Date=DateTime.Parse("2021-09-01"),Price=Decimal.Parse("500")}
+                new Trip{Name="Trip 1",Date=DateTime.Parse("2021-09-01"),Price=Decimal.Parse("100")},
+                new Trip{Name="Trip 2",Date=DateTime.Parse("2021-09-01"),Price=Decimal.Parse("200")},
+                new Trip{Name="Trip 3",Date=DateTime.Parse("2021-09-01"),Price=Decimal.Parse("300")},
+                new Trip{Name="Trip 4",Date=DateTime.Parse("2021-09-01"),Price=Decimal.Parse("400")},
+                new Trip{Name="Trip 5",Date=DateTime.Parse("2021-09-01"),Price=Decimal.Parse("500")}
             };
 
             foreach (Trip c in trips)
